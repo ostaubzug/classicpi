@@ -14,14 +14,15 @@ def randomfile():
 
 
 def play(musicfile):
-    print("hello")
 
-    mixer.music.load("/home/pi/Music/01 Tchaikovsky_ Swan Lake - Scene 1.mp3")
+
+    mixer.music.load("/home/pi/Music/" + musicfile)
     mixer.music.set_volume(0.5)
     mixer.music.play()
 
 
-
+x = randomfile()
+play(x)
 
 
 
