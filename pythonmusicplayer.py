@@ -13,16 +13,26 @@ def randomfile():
 
 
 
-def play(musicfile):
-
+def play():
+    musicfile = randomfile()
 
     mixer.music.load("/home/pi/Music/" + musicfile)
     mixer.music.set_volume(0.5)
     mixer.music.play()
+    
+    
+    ch = input("['p','r','v','e']>>>")
+    if ch == "p":
+        mixer.music.pause()
+    elif ch == "r":
+        mixer.music.unpause()
+    elif ch == "e":
+        
+        mixer.music.stop()
 
 
-x = randomfile()
-play(x)
+
+play()
 
 
 
