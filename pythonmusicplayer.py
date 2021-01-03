@@ -34,20 +34,30 @@ def play():
     mixer.music.load("/home/pi/Music/" + musicfile)
     mixer.music.set_volume(0.6)
     mixer.music.play()
-    shuffle()
+
     
 
 def shuffle():
+    global pause
+    pause = False
     while True:
         if GPIO.input(13) == 1:
-            print("initiate loop")
-        if GPIO.input(19) == 1:
-            print("next")
+            print("initiate loop")     
+            time.sleep(0.5)
+            
+        elif GPIO.input(19) == 1:
             play()
-        if GPIO.input(26) == 1:
-            print("pause/unpause")
-            #if musik spielt und so logik um richtig zu reagieren.
+            time.sleep(0.5)
+        elif GPIO.input(26) == 1 and pause == False:
             mixer.music.pause()
+            pause = True
+            time.sleep(0.5)           
+        elif GPIO.input(26) == 1 and pause == True:
+            mixer.music.unpause()
+            pause = False
+            time.sleep(0.5)
+        elif mixer.music.get_busy() == False:
+            play()
         
 def loop():
     while True:
@@ -71,6 +81,7 @@ def loop():
 
 blinkstartup()
 play()
+shuffle()
 
 
 
