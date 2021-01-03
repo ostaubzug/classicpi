@@ -30,13 +30,13 @@ def play():
     
     musicfile = randomfile()
     mixer.music.load("/home/pi/Music/" + musicfile)
-    mixer.music.set_volume(0.7)
+    mixer.music.set_volume(0.9)
     mixer.music.play()
     
 def playloop():
     global musicfile
     mixer.music.load("/home/pi/Music/" + musicfile)
-    mixer.music.set_volume(0.7)
+    mixer.music.set_volume(0.9)
     mixer.music.play()
     
 
@@ -60,9 +60,9 @@ def shuffle():
         elif GPIO.input(19) == 1:
             # next song
             if loop == True:
-                GPIO.output(23, GPIO.HIGH)
-                time.sleep(0.1)
                 GPIO.output(23, GPIO.LOW)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.HIGH)
                 playloop()
                 time.sleep(0.3)
             elif loop == False:
@@ -100,21 +100,3 @@ blinkstartup()
 play()
 shuffle()
 
-
-
-# while True:
-#     print("Press 'p' to pause")
-#     print("Press 'r' to resume")
-#     print("Press 'v' set volume")
-#     print("Press 'e' to exit")
-#     ch = input("['p','r','v','e']>>>")
-#     if ch == "p":
-#         mixer.music.pause()
-#     elif ch == "r":
-#         mixer.music.unpause()
-#     elif ch == "v":
-#         v = float(input("Enter volume(0 to 1): "))
-#         mixer.music.set_volume(v)
-#     elif ch == "e":
-#         mixer.music.stop()
-#         break 
