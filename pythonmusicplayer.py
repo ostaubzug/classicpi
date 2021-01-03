@@ -39,19 +39,15 @@ def play():
 
 def shuffle():
     while True:
-        print("Press 'p' to pause")
-        print("Press 'r' to resume")
-        print("Press 'n' for a new song")
-        print("Press 'l' to initiate loop playing")
-        ch = input("['p','r']>>>")
-        if ch == "p":
-            mixer.music.pause()
-        elif ch == "r":
-            mixer.music.unpause()
-        elif ch == "n":
+        if GPIO.input(13) == 1:
+            print("initiate loop")
+        if GPIO.input(19) == 1:
+            print("next")
             play()
-        elif ch == "l":
-            loop()
+        if GPIO.input(26) == 1:
+            print("pause/unpause")
+            #if musik spielt und so logik um richtig zu reagieren.
+            mixer.music.pause()
         
 def loop():
     while True:
