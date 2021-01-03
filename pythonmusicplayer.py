@@ -3,9 +3,9 @@ import os
 import random
 
 mixer.init()
-#musik auf raspi kopieren via usb stick
-#zufallsgenerator um verschiedene Songs aus dem Ordner auszuwählen
 
+# mixer.music.get_busy()
+# to check if the music is playing implementation later when working with the gpio pins
 def randomfile():
     
     file_name = random.choice(os.listdir("/home/pi/Music")) #change dir name to whatever
