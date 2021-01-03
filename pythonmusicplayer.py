@@ -1,8 +1,8 @@
 from pygame import mixer
-mixer.init()
 import os
 import random
 
+mixer.init()
 #musik auf raspi kopieren via usb stick
 #zufallsgenerator um verschiedene Songs aus dem Ordner auszuwählen
 
