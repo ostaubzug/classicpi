@@ -20,11 +20,9 @@ def blinkstartup():
 
 # mixer.music.get_busy()
 # to check if the music is playing implementation later when working with the gpio pins
-def randomfile():
-    
+def randomfile():    
     file_name = random.choice(os.listdir("/home/pi/Music")) #change dir name to whatever
     return file_name
-
 
 
 def play():
@@ -32,21 +30,40 @@ def play():
     
     musicfile = randomfile()
     mixer.music.load("/home/pi/Music/" + musicfile)
-    mixer.music.set_volume(0.6)
+    mixer.music.set_volume(0.7)
     mixer.music.play()
+    
+def playloop():
+    global musicfile
+    mixer.music.load("/home/pi/Music/" + musicfile)
+    mixer.music.set_volume(0.7)
+    mixer.music.play()
+    
 
     
 
 def shuffle():
-    global pause
+    loop = False
     pause = False
     while True:
         if GPIO.input(13) == 1:
-            loop()
-            print("loop")
+            if loop == True:
+                loop = False
+                GPIO.output(23, GPIO.LOW)
+                time.sleep(0.5)
+            elif loop == False:
+                loop = True
+                GPIO.output(23, GPIO.HIGH)
+                time.sleep(0.5)            
+            
         elif GPIO.input(19) == 1:
-            play()
-            time.sleep(0.5)
+            if loop == True:
+                playloop()
+                time.sleep(0.5)
+            elif loop == False:
+                play()
+                time.sleep(0.5)
+
         elif GPIO.input(26) == 1 and pause == False:
             mixer.music.pause()
             pause = True
@@ -57,26 +74,6 @@ def shuffle():
             time.sleep(0.5)
         elif mixer.music.get_busy() == False:
             play()
-        
-def loop():
-    while True:
-        if GPIO.input(13) == 1:
-            shuffle()
-            print("shuffle")
-        elif GPIO.input(19) == 1:
-            play()
-            time.sleep(0.5)
-        elif GPIO.input(26) == 1 and pause == False:
-            mixer.music.pause()
-            pause = True
-            time.sleep(0.5)           
-        elif GPIO.input(26) == 1 and pause == True:
-            mixer.music.unpause()
-            pause = False
-            time.sleep(0.5)
-        elif mixer.music.get_busy() == False:
-            play()
-        
 
         
 blinkstartup()
