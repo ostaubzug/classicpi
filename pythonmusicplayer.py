@@ -1,8 +1,22 @@
 from pygame import mixer
 import os
 import random
+import RPi.GPIO as GPIO
+import time
 
 mixer.init()
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(13, GPIO.IN)
+GPIO.setup(19, GPIO.IN)
+GPIO.setup(26, GPIO.IN)
+GPIO.setup(23, GPIO.OUT)
+
+def blinkstartup():
+    for i in range(5):
+        GPIO.output(23, GPIO.HIGH)
+        time.sleep(0.2)
+        GPIO.output(23, GPIO.LOW)
+        time.sleep(0.2)
 
 # mixer.music.get_busy()
 # to check if the music is playing implementation later when working with the gpio pins
@@ -59,7 +73,7 @@ def loop():
         elif ch == "s":
             shuffle()
 
-
+blinkstartup()
 play()
 
 

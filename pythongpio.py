@@ -15,6 +15,7 @@ for i in range(5):
     GPIO.output(23, GPIO.LOW)
     time.sleep(0.5)
 
+
 while True:
     if GPIO.input(13) == 1:
         print("13")
