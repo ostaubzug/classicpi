@@ -20,20 +20,20 @@ def play():
     mixer.music.set_volume(0.5)
     mixer.music.play()
     
-    
-    ch = input("['p','r','v','e']>>>")
-    if ch == "p":
-        mixer.music.pause()
-    elif ch == "r":
-        mixer.music.unpause()
-    elif ch == "e":
-        
-        mixer.music.stop()
 
+def playing():
+    while True:
+        print("Press 'p' to pause")
+        print("Press 'r' to resume")
+        ch = input("['p','r']>>>")
+        if ch == "p":
+            mixer.music.pause()
+        elif ch == "r":
+            mixer.music.unpause()
 
 
 play()
-
+playing()
 
 
 # while True:
