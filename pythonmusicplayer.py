@@ -42,9 +42,8 @@ def shuffle():
     pause = False
     while True:
         if GPIO.input(13) == 1:
-            print("initiate loop")     
-            time.sleep(0.5)
-            
+            loop()
+            print("loop")
         elif GPIO.input(19) == 1:
             play()
             time.sleep(0.5)
@@ -61,24 +60,25 @@ def shuffle():
         
 def loop():
     while True:
-        print("Press 'p' to pause")
-        print("Press 'r' to resume")
-        print("Press 'n' for a new song")
-        print("Press 's' to initiate shuffle play ")
-        ch = input("['p','r']>>>")
-        if ch == "p":
-            mixer.music.pause()
-        elif ch == "r":
-            mixer.music.unpause()
-        elif ch == "n":
-            mixer.music.load("/home/pi/Music/" + musicfile)
-            mixer.music.set_volume(0.6)
-            mixer.music.play()
-            loop()
-
-        elif ch == "s":
+        if GPIO.input(13) == 1:
             shuffle()
+            print("shuffle")
+        elif GPIO.input(19) == 1:
+            play()
+            time.sleep(0.5)
+        elif GPIO.input(26) == 1 and pause == False:
+            mixer.music.pause()
+            pause = True
+            time.sleep(0.5)           
+        elif GPIO.input(26) == 1 and pause == True:
+            mixer.music.unpause()
+            pause = False
+            time.sleep(0.5)
+        elif mixer.music.get_busy() == False:
+            play()
+        
 
+        
 blinkstartup()
 play()
 shuffle()
