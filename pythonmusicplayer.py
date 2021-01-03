@@ -12,11 +12,11 @@ GPIO.setup(26, GPIO.IN)
 GPIO.setup(23, GPIO.OUT)
 
 def blinkstartup():
-    for i in range(5):
+    for i in range(3):
         GPIO.output(23, GPIO.HIGH)
-        time.sleep(0.2)
+        time.sleep(0.1)
         GPIO.output(23, GPIO.LOW)
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 # mixer.music.get_busy()
 # to check if the music is playing implementation later when working with the gpio pins
@@ -47,6 +47,7 @@ def shuffle():
     pause = False
     while True:
         if GPIO.input(13) == 1:
+            #loop
             if loop == True:
                 loop = False
                 GPIO.output(23, GPIO.LOW)
@@ -57,23 +58,42 @@ def shuffle():
                 time.sleep(0.5)            
             
         elif GPIO.input(19) == 1:
+            # next song
             if loop == True:
+                GPIO.output(23, GPIO.HIGH)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.LOW)
                 playloop()
-                time.sleep(0.5)
+                time.sleep(0.3)
             elif loop == False:
+                GPIO.output(23, GPIO.HIGH)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.LOW)
                 play()
-                time.sleep(0.5)
-
+                time.sleep(0.3)
+                
         elif GPIO.input(26) == 1 and pause == False:
+            #start stop
             mixer.music.pause()
+            GPIO.output(23, GPIO.HIGH)
+            time.sleep(0.1)
+            GPIO.output(23, GPIO.LOW)
             pause = True
-            time.sleep(0.5)           
+            time.sleep(0.3)
+            
         elif GPIO.input(26) == 1 and pause == True:
             mixer.music.unpause()
+            GPIO.output(23, GPIO.HIGH)
+            time.sleep(0.1)
+            GPIO.output(23, GPIO.LOW)
             pause = False
-            time.sleep(0.5)
+            time.sleep(0.3)
+            
         elif mixer.music.get_busy() == False:
-            play()
+            if loop == False:
+                play()
+            if loop == True:
+                playloop()
 
         
 blinkstartup()
