@@ -12,16 +12,16 @@ GPIO.setup(26, GPIO.IN)
 GPIO.setup(23, GPIO.OUT)
 
 def blinkstartup():
+    #LED blinking indicates that the pi is ready
     for i in range(3):
         GPIO.output(23, GPIO.HIGH)
         time.sleep(0.1)
         GPIO.output(23, GPIO.LOW)
         time.sleep(0.1)
 
-# mixer.music.get_busy()
-# to check if the music is playing implementation later when working with the gpio pins
-def randomfile():    
-    file_name = random.choice(os.listdir("/home/pi/Music")) #change dir name to whatever
+
+def randomfile():
+    file_name = random.choice(os.listdir("/home/pi/Music")) #change the path to your music
     return file_name
 
 
@@ -73,23 +73,43 @@ def shuffle():
                 time.sleep(0.3)
                 
         elif GPIO.input(26) == 1 and pause == False:
-            #start stop
-            mixer.music.pause()
-            GPIO.output(23, GPIO.HIGH)
-            time.sleep(0.1)
-            GPIO.output(23, GPIO.LOW)
-            pause = True
-            time.sleep(0.3)
+            #pause
+            if loop == True:
+                mixer.music.pause()
+                GPIO.output(23, GPIO.LOW)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.HIGH)
+                pause = True
+                time.sleep(0.3)
+            else:
+                mixer.music.pause()
+                GPIO.output(23, GPIO.HIGH)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.LOW)
+                pause = True
+                time.sleep(0.3)
             
         elif GPIO.input(26) == 1 and pause == True:
-            mixer.music.unpause()
-            GPIO.output(23, GPIO.HIGH)
-            time.sleep(0.1)
-            GPIO.output(23, GPIO.LOW)
-            pause = False
-            time.sleep(0.3)
+            #unpause
+            if loop == True:
+                
+                mixer.music.unpause()
+                GPIO.output(23, GPIO.LOW)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.HIGH)
+                pause = False
+                time.sleep(0.3)
+            else:
+                mixer.music.unpause()
+                GPIO.output(23, GPIO.HIGH)
+                time.sleep(0.1)
+                GPIO.output(23, GPIO.LOW)
+                pause = False
+                time.sleep(0.3)
+                
             
         elif mixer.music.get_busy() == False:
+            #play a new song when the current is finished
             if loop == False:
                 play()
             if loop == True:
