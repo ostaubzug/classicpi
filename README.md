@@ -2,7 +2,7 @@ This is an attempt to build a minimalistic music player with Raspberry Pi and Py
 
 It knows three commands (skip, pause and loop)
 
-PICTURE
+PICTURE gg
 
 Load your music onto the raspberry pi and adjust the PATH to your music in the randomfile function.
 
