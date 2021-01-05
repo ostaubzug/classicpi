@@ -2,7 +2,7 @@ This is an attempt to build a minimalistic music player with Raspberry Pi and Py
 
 It knows three commands (skip, pause and loop)
 
-PICTURE gg
+If you care about audio quality you will need to use a decent usb soundcard.
 
 Load your music onto the raspberry pi and adjust the PATH to your music in the randomfile function.
 
@@ -36,6 +36,7 @@ Depending on what GPIO Pins you want to use you need to change them as well. Her
 
 ![Getting Started](pictures/picture1.JPG)
 
-I've added some CAD Files as well so you can print your own buttons for this.
+I've made some button covers that you can 3D Print yourself. The stl files are in the CAD folder:
 
-I've added also a USB Soundcard to enhance the quite poor audio quality of the raspberry
+![Getting Started](pictures/picture5.JPG)
+![Getting Started](pictures/picture4.JPG)
