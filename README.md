@@ -10,9 +10,12 @@ print("file_name = random.choice(os.listdir("your path"))")
 
  Next you need to make sure that the raspberry loads the python script automaticly after each startup. There are several ways to accomplish this, I've used cron:
  ```
-this should be code reig
+crontab -e
+ ``` 
+
+  ```
+@reboot python /home/pi/yourscript.py
  ``` 
 
 
-This is the README File
 
