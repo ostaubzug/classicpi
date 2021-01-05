@@ -1,3 +1,4 @@
+![Getting Started](pictures/picture2.JPG)
 This is an attempt to build a minimalistic music player with Raspberry Pi and Python, designed for minimal distraction. I'm mostly using it to play classical music while studying.
 
 It knows three commands (skip, pause and loop)
