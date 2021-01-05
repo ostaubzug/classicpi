@@ -12,10 +12,12 @@ crontab -e
  ``` 
 
   ```
-@reboot python /home/pi/yourscript.py
+@reboot python /home/pi/yourpath/pythonmusicplayer.py
  ``` 
 
-Depending on what GPIO Pins you want to use you need to change them as well. Here a picture of my Breadboard.
+Depending on what GPIO Pins you want to use you need to change them as well. Here is a picture of my Breadboard.
 
 I've added some CAD Files as well so you can print your own buttons for this.
+
+I've added also a USB Soundcard to enhance the quite poor audio quality of the raspberry
 
