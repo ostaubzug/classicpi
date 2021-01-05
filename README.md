@@ -10,10 +10,14 @@ Load your music onto the raspberry pi and adjust the PATH to your music in the r
 file_name = random.choice(os.listdir("your path")
 ```
 
-Next you need to make sure that the raspberry loads the python script automaticly after each startup. There are several ways to accomplish this, I've used cron:
+Next you need to make sure that the raspberry loads the python script after each startup. There are several ways to accomplish this, I've used cron:
 
 ```
 crontab -e
+```
+
+```
+@reboot python /home/pi/yourpath/pythonmusicplayer.py
 ```
 
 Additionally I've had to uncomment
