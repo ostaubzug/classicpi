@@ -28,7 +28,9 @@ in the config.txt file to make sure it worked properly.
 @reboot python /home/pi/yourpath/pythonmusicplayer.py
 ```
 
-Depending on what GPIO Pins you want to use you need to change them as well. Here is a picture of my Breadboard.
+Depending on what GPIO Pins you want to use you need to change them as well. Here is a picture of my Breadboard:
+
+![Getting Started](pictures/picture1.JPG)
 
 I've added some CAD Files as well so you can print your own buttons for this.
 
